@@ -1,0 +1,28 @@
+Setup scripts for AWS units:
+
+Master: (RHEL)
+	sudo yum update -y && sudo yum install python-devel gcc -y
+curl -Ox https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+sudo pip install -U pymodbus
+(download and configure synchronous_client.py from examples/common)
+
+
+Slave: (RHEL)
+	sudo yum update -y && sudo yum install python-devel gcc -y
+curl -O https://bootstrap.pypa.io/get-pip.py
+sudo python get-pip.py
+sudo pip install -U pymodbus
+(download and configure synchronous_server.py from examples/common)
+# open firewall ports
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --reload
+
+
+Interceptor: (RHEL)
+(same as master)
+sudo pip install scapy
+sudo python scapy-mitm.py (from Chris’s dev folder)
+
+
+
